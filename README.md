@@ -20,4 +20,28 @@
 - Navigating in your browser to `http://127.0.0.1:5000/` you should now see your project
 
 ## Loading the Configurator
-- 
+
+### Example:
+```
+{'detail': {
+  'configurationMapping': {
+      '0': 'dde5760a-b1e9-49b6-b44b-54a631298046-00047f32',
+      '1': 'dde5760a-b1e9-49b6-b44b-54a631298046-00047f59'
+    }
+  'controls': [
+    {
+      'name': 'Hanger Width',
+      'options': [
+        {
+          'value': '0',
+          'text': '12"',
+        },
+        {
+          'value': '1',
+          'text': '36"'
+        }
+      ]
+    }
+  ]
+}}
+```
