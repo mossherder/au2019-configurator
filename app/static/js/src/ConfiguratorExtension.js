@@ -87,12 +87,41 @@ class Configurator extends Autodesk.Viewing.Extension {
     // show/hide docking panel
     this.panel.setVisible(!this.panel.isVisible());
   }
+
+  handleConfigurationChange(event) {
+    const configurationCode = event.detail;
+    let configuratorData = sessionStorage.getItem('configuratorData');
+    if (!configuratorData) {
+      return;
+    } else {
+      configuratorData = JSON.parse(configuratorData);
+      const configuratorMapping = configuratorData.configurationMapping;
+      const uniqueId = configuratorMapping[configurationCode];
+      if (uniqueId) {
+        this.configureElementByUniqueId(uniqueId);
+      }
+    }
+  }
+
+  configureElementByUniqueId(uniqueId) {
+    this.viewer.model.getExternalIdMapping((mapping) => {
+      this.configureElementByUniqueIdAndMapping(uniqueId, mapping);
+    });
+  }
+
+  configureElementByUniqueIdAndMapping(uniqueId, mapping) {
+    const elementDbId = mapping[uniqueId];
+    if (elementDbId) {
+      this.viewer.isolate(elementDbId);
+      this.viewer.fitToView(elementDbId);
+    }
+  }
 }
 
 class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
-  constructor(viewerContainer, container, id, title, options, viewer, modelBrowser) {
+  constructor(viewerContainer, container, id, title, options, viewer, configurator) {
     super(viewerContainer, container, id, title, options);
-    this.modelBrowser = modelBrowser;
+    this.configurator = configurator;
     this.viewer = viewer;
     this.create();
   }
@@ -139,6 +168,7 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
       const controlsData = configuratorData.controls;
       const controls = this.createControls(controlsData);
       this.setPanelControls(controls);
+      this.setControlChangedEvents();
     }
   }
 
@@ -196,6 +226,17 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
       control.appendTo(controlRowData);
       controlRowData.appendTo(controlRow);
       controlRow.appendTo(currentControlsArea);
+    });
+  }
+
+  setControlChangedEvents() {
+    $('.configurator-control').on('change', () => {
+      const configurationCodeComponents = [];
+      $('.configurator-control').each((index, control) => {
+        configurationCodeComponents.push($(control).val());
+      });
+      const configurationCode = configurationCodeComponents.join('-');
+      window.dispatchEvent(new CustomEvent(this.configurator.CONFIGURATION_CHANGED_EVENT, { 'detail': configurationCode }));
     });
   }
 }
