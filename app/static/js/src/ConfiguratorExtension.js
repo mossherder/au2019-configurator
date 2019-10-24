@@ -2,16 +2,18 @@
 /* global window */
 /* global sessionStorage */
 /* global Event */
+/* global CustomEvent */
 /* global Autodesk */
 
-/**
- */
 class Configurator extends Autodesk.Viewing.Extension {
   constructor(viewer, options) {
     super(viewer, options);
     this.viewer = viewer;
     this.createToolbarButton;
     this.panel = null;
+    this.CONFIGURATOR_DATA_UPDATE = 'configuratorDataUpdate'
+    this.CONFIGURATOR_DATA_CHANGED = 'configuratorDataChanged'
+    this.CONFIGURATION_CHANGED_EVENT = 'configurationChanged'
   }
 
   load() {
@@ -23,8 +25,11 @@ class Configurator extends Autodesk.Viewing.Extension {
       this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this);
       this.viewer.addEventListener(this.viewer.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded);
     }
-    window.addEventListener('configuratorData', (event) => {
+    window.addEventListener(this.CONFIGURATOR_DATA_UPDATE, (event) => {
       this.setConfiguratorDB(event);
+    });
+    window.addEventListener(this.CONFIGURATION_CHANGED_EVENT, (event) => {
+      this.handleConfigurationChange(event);
     });
     console.log('Configurator Loaded!')
     return true;
@@ -41,7 +46,7 @@ class Configurator extends Autodesk.Viewing.Extension {
 
   setConfiguratorDB(event) {
     sessionStorage.setItem('configuratorData', JSON.stringify(event.detail));
-    window.dispatchEvent(new Event('configuratorDataChanged'));
+    window.dispatchEvent(new Event(this.CONFIGURATOR_DATA_CHANGED));
   }
 
   createUI() {
@@ -105,7 +110,7 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
     this.createConfiguratorControlsArea();
     this.updateControls();
 
-    window.addEventListener('configuratorDataChanged', () => {
+    window.addEventListener(this.configurator.CONFIGURATOR_DATA_CHANGED, () => {
       this.updateControls();
     });
   }
