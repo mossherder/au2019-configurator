@@ -1,0 +1,3 @@
+class Config(object):
+    FORGE_CLIENT = '[FORGE_CLIENT_ID]'
+    FORGE_SECRET = '[FORGE_CLIENT_SECRET]'
