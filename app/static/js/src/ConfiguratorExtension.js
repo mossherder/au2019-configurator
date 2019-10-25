@@ -1,6 +1,6 @@
 /* global console */
 /* global window */
-/* global sessionStorage */
+/* global localStorage */
 /* global Event */
 /* global CustomEvent */
 /* global Autodesk */
@@ -45,7 +45,7 @@ class Configurator extends Autodesk.Viewing.Extension {
   }
 
   setConfiguratorDB(event) {
-    sessionStorage.setItem('configuratorData', JSON.stringify(event.detail));
+    localStorage.setItem('configuratorData', JSON.stringify(event.detail));
     window.dispatchEvent(new Event(this.CONFIGURATOR_DATA_CHANGED));
   }
 
@@ -90,7 +90,7 @@ class Configurator extends Autodesk.Viewing.Extension {
 
   handleConfigurationChange(event) {
     const configurationCode = event.detail;
-    let configuratorData = sessionStorage.getItem('configuratorData');
+    let configuratorData = localStorage.getItem('configuratorData');
     if (!configuratorData) {
       return;
     } else {
@@ -160,7 +160,7 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
   }
 
   updateControls() {
-    const configuratorDataDB = sessionStorage.getItem('configuratorData');
+    const configuratorDataDB = localStorage.getItem('configuratorData');
     if (!configuratorDataDB) {
       return;
     } else {
