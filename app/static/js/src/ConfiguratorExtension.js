@@ -169,6 +169,7 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
       const controls = this.createControls(controlsData);
       this.setPanelControls(controls);
       this.setControlChangedEvents();
+      this.controlsChangedEvent();
     }
   }
 
@@ -231,13 +232,17 @@ class ConfiguratorConfigurationPanel extends Autodesk.Viewing.UI.DockingPanel {
 
   setControlChangedEvents() {
     $('.configurator-control').on('change', () => {
-      const configurationCodeComponents = [];
-      $('.configurator-control').each((index, control) => {
-        configurationCodeComponents.push($(control).val());
-      });
-      const configurationCode = configurationCodeComponents.join('-');
-      window.dispatchEvent(new CustomEvent(this.configurator.CONFIGURATION_CHANGED_EVENT, { 'detail': configurationCode }));
+      this.controlsChangedEvent();
     });
+  }
+
+  controlsChangedEvent() {
+    const configurationCodeComponents = [];
+    $('.configurator-control').each((index, control) => {
+      configurationCodeComponents.push($(control).val());
+    });
+    const configurationCode = configurationCodeComponents.join('-');
+    window.dispatchEvent(new CustomEvent(this.configurator.CONFIGURATION_CHANGED_EVENT, { 'detail': configurationCode }));
   }
 }
 
