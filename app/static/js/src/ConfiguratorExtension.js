@@ -56,7 +56,7 @@ class Configurator extends Autodesk.Viewing.Extension {
       this.showDockingPanel();
     };
     button1.addClass('configurator-configuration-button');
-    button1.setToolTip('Configure the Model');
+    button1.setToolTip('Configure');
 
     const toolbarName = 'configurator-toolbar';
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup(toolbarName);
