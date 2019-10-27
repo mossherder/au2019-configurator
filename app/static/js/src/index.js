@@ -7,7 +7,8 @@ const forgeViewerDivId = 'forge-viewer'; // HTML Element Id
 const viewerConfig = {
   'extensions': [
     'Configurator.Extension.Configurator',
-    'Configurator.Extension.Properties'
+    'Configurator.Extension.Properties',
+    'Configurator.Extension.PinchZoomFix'
   ],
 };
 
