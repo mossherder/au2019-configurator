@@ -8,3 +8,8 @@
     vertical-align: top;
     color: white;
 }
+#configurator-configuration-button {
+    background-image: url('/static/img/configuratorToolIcon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
