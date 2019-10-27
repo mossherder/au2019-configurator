@@ -23,25 +23,27 @@
 
 ### Example:
 ```
-{'detail': {
-  'configurationMapping': {
+{
+  'detail': {
+    'configurationMapping': {
       '0': 'dde5760a-b1e9-49b6-b44b-54a631298046-00047f32',
       '1': 'dde5760a-b1e9-49b6-b44b-54a631298046-00047f59'
-    }
-  'controls': [
-    {
-      'name': 'Hanger Width',
-      'options': [
-        {
-          'value': '0',
-          'text': '12"',
-        },
-        {
-          'value': '1',
-          'text': '36"'
-        }
-      ]
-    }
-  ]
-}}
+    },
+    'controls': [
+      {
+        'name': 'Hanger Width',
+        'options': [
+          {
+            'value': '0',
+            'text': '12"',
+          },
+          {
+            'value': '1',
+            'text': '36"'
+          }
+        ]
+      }
+    ]
+  }
+}
 ```
