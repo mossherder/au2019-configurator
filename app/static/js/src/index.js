@@ -8,7 +8,8 @@ const viewerConfig = {
   'extensions': [
     'Configurator.Extension.Configurator',
     'Configurator.Extension.Properties',
-    'Configurator.Extension.PinchZoomFix'
+    'Configurator.Extension.PinchZoomFix',
+    'Configurator.Extension.DefaultDimension'
   ],
 };
 
