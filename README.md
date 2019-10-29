@@ -11,15 +11,16 @@
 
 ## Translate a Model
 - Add a Revit model to the `app/forge` directory
-- Make `app/forge` your current directory and run `python forge_model_uploader.py -b -j model_uploader.json`
-- Note the resulting URN of the form: `dXJuOm...`
+- Update `model_uploader.json` with your credentials and the revit project name
+- Make `app/forge` your current directory and run `python forge_model_uploader.py -b -j model_uploader.json` Note: you don't need the `-b` if you already have a bucket specified in `model_uploader.json`
+- Record the resulting URN of the form: `dXJuOm...`
 
 ## Running Locally
 - In `routes.py` replace '[MODEL_ID]' with the URN from above
 - Locally run your web server: `flask run`
 - Navigating in your browser to `http://127.0.0.1:5000/` you should now see your project
 
-## Loading the Configurator
+## Loading the Configurator with Data
 
 ### Example:
 ```
