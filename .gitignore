@@ -5,7 +5,6 @@ __pycache__/
 *.pyc
 *.exe
 *.dll
-*.rvt
 
 model_uploader.json
 config.py

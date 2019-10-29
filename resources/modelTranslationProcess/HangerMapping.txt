@@ -1,0 +1,49 @@
+{
+  'detail': {
+    'configurationMapping': {
+      '0-0-1-0-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-000486d1'],
+      '0-1-0-0-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-000486f1'],
+      '0-0-0-0-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-000486b1'],
+      '0-1-1-0-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-00048711'],
+      '0-0-1-1-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-000486e1'],
+      '0-0-0-1-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-000486c1'],
+      '0-1-0-1-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-00048701'],
+      '0-1-1-1-0': ['7d69d9a2-b65d-4cf8-ae12-d372fc28858b-00048721']
+    },
+    'controls': [
+      {
+        'options': [
+            {'value': 0, 'text': '1-5/8" Facing Up'}
+          ],
+        'name': 'Strut Size'
+      },
+      {
+        'options': [
+          {'value': 0, 'text': '12"'},
+          {'value': 1, 'text': '24"'}
+        ],
+        'name': 'Strut Width'
+      },
+      {
+        'options': [
+          {'value': 0, 'text': '3/8"'},
+          {'value': 1, 'text': '1/2"'}
+        ],
+        'name': 'Rod Size'
+      },
+      {
+        'options': [
+          {'value': 0, 'text': '12"'},
+          {'value': 1, 'text': '24"'}
+        ],
+        'name': 'Rod Length'
+      },
+      {
+        'options': [
+          {'value': 0, 'text': '1 Tier'}
+        ], 
+        'name': 'Tiers'
+      }
+    ]
+  }
+}

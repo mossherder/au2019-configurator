@@ -168,7 +168,6 @@ class DefaultDimensionExtension extends Autodesk.Viewing.Extension {
     return true;
   }
 
-
   getElementBoundingBoxCenterByDbIds(dbIds) {
     const elementBoundingBox = this.getBoundingBox(dbIds);
     const boxCenter = new THREE.Vector3();
