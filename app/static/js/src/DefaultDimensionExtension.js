@@ -53,9 +53,9 @@ class DefaultDimensionExtension extends Autodesk.Viewing.Extension {
     this.createTags();
     const childDbIds = await this.getChildDbIds(dbId);
     const defaultElementDbId = await this.getDbIdByDbIdsAndName(childDbIds, this.defaultDimensionElementName);
-    this.updateTagPositions([defaultElementDbId]);
-
     const defaultParameterValue = await this.getDefaultParameterValue(dbId);
+  
+    this.updateTagPositions([defaultElementDbId]);
     this.updateTagLabelText(defaultParameterValue);
   }
 
@@ -221,11 +221,6 @@ class DefaultDimensionExtension extends Autodesk.Viewing.Extension {
     this.currentTag().text(text);
   }
 
-  /**
-   * Uses dbId element fragments to build boundingbox of element
-   * @param {Array<number>} dbIds dbIds of element to find boundingBox
-   * @return {THREE.Box3} dbId elements bounding box
-   */
   getBoundingBox(dbIds) {
     const totalBox = new THREE.Box3();
     const instanceTree = this.viewer.model.getInstanceTree();

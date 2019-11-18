@@ -88,6 +88,12 @@ class Configurator extends Autodesk.Viewing.Extension {
     this.panel.setVisible(!this.panel.isVisible());
   }
 
+
+  /**
+   * When the configuration is changed,
+   * we'll federate the new Assembly Code
+   * and find the corresponding DbId
+   */
   handleConfigurationChange(event) {
     const configurationCode = event.detail;
     let configuratorData = localStorage.getItem('configuratorData');
@@ -95,6 +101,9 @@ class Configurator extends Autodesk.Viewing.Extension {
       return;
     } else {
       configuratorData = JSON.parse(configuratorData);
+
+
+      // Assembly Code -> ExternalId (UniqueId)
       const configuratorMapping = configuratorData.configurationMapping;
       const uniqueId = configuratorMapping[configurationCode];
       if (uniqueId) {
@@ -103,6 +112,7 @@ class Configurator extends Autodesk.Viewing.Extension {
     }
   }
 
+  // ExternalId -> DbId
   configureElementByUniqueId(uniqueId) {
     this.viewer.model.getExternalIdMapping((mapping) => {
       this.configureElementByUniqueIdAndMapping(uniqueId, mapping);
@@ -110,6 +120,7 @@ class Configurator extends Autodesk.Viewing.Extension {
   }
 
   configureElementByUniqueIdAndMapping(uniqueId, mapping) {
+    // ExternalId -> DbId
     const elementDbId = mapping[uniqueId];
     if (elementDbId) {
       this.viewer.isolate(elementDbId);
