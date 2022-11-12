@@ -9,7 +9,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "eslint": "^6.5.1",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {}
 }
